@@ -7,12 +7,14 @@ from ase.io import read
 from ase.data import covalent_radii as CR
 import numpy as np
 
+try:
+    with open('/global/cscratch1/sd/bcomer3/gamma_calcs/lobster_calcs/gather_results/ads_data.json', 'r') as f:
+        ads_data = json.load(f)
 
-with open('/global/cscratch1/sd/bcomer3/gamma_calcs/lobster_calcs/gather_results/ads_data.json', 'r') as f:
-    ads_data = json.load(f)
-
-with open('/global/cscratch1/sd/bcomer3/gamma_calcs/lobster_calcs/gather_results/metal_fits.json', 'r') as f:
-    cohp_fit_dict = json.load(f)
+    with open('/global/cscratch1/sd/bcomer3/gamma_calcs/lobster_calcs/gather_results/metal_fits.json', 'r') as f:
+        cohp_fit_dict = json.load(f)
+except:
+    print('couldn\'t load data')
 
 def read_COHPCAR(filename):
     with open(filename, 'r') as f:
